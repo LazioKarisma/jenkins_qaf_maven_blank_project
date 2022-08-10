@@ -11,6 +11,9 @@
 	<url>http://maven.apache.org</url>
 
 	<properties>
+		<testngXmlDir>config</testngXmlDir>
+		<testngXmlFile>testrun_config.xml</testngXmlFile>
+		
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<testSuiteFile>config/testrun_config.xml</testSuiteFile>
 		<sourceVersion>1.8</sourceVersion>
@@ -97,7 +100,7 @@
 				<version>2.9</version>
 				<configuration>
 					<suiteXmlFiles>
-						<suiteXmlFile>${testSuiteFile}</suiteXmlFile>
+						<suiteXmlFile>${testngXmlDir}/${testngXmlFile}</suiteXmlFile>
 					</suiteXmlFiles>
 					<reportsDirectory>${test.results.dir}/${run.time}</reportsDirectory>
 					<systemPropertyVariables>
