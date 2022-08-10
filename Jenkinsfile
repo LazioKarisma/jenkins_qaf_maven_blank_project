@@ -29,9 +29,7 @@ pipeline {
             <p>Check console output at &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>&QUOT;</p>""",
           to: 'lazio_karisma@manulife.com'
 
-
-			publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '', reportFiles: 'dashboard.htm', reportName: 'HTML Report', reportTitles: 'HTML Report'])
-
+publishHTML([allowMissing: false, alwaysLinkToLastBuild: true, includes: '**/*.html,**/*.css,**/*.png,**/*.jpg,**/*.giff', keepAll: false, reportDir: 'dashboard', reportFiles: 'dashboard.htm', reportName: 'HTML Report', reportTitles: 'HTML Report''])
           
                 }
             }
