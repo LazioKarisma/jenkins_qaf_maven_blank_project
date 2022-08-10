@@ -27,7 +27,12 @@ pipeline {
 			subject: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
           body: """<p>SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
             <p>Check console output at &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>&QUOT;</p>""",
-          to: 'lazio_karisma@manulife.com;ali_ridho@manulife.com'
+          to: 'lazio_karisma@manulife.com'
+
+
+			publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '', reportFiles: 'dashboard.htm', reportName: 'HTML Report', reportTitles: 'HTML Report'])
+
+          
                 }
             }
         }
