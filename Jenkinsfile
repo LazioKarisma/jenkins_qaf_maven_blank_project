@@ -20,7 +20,7 @@ pipeline {
  		//zip zipFile: 'report.zip', archive: false, dir: 'QmetryReport', overwrite: true	
 		
 		dir('QmetryReport'){
-   		 bat '7z a report.7z -plazio1234 -mhe .'
+   		 bat 'test.bat'
 		}
             }
 
