@@ -19,8 +19,8 @@ pipeline {
 // 		bat 'zip -r archieve.zip . -e'   
  		//zip zipFile: 'report.zip', archive: false, dir: 'QmetryReport', overwrite: true	
 		
-		dir("${WORKSPACE}/QmetryReport"){
-   		 sh '7z a report.7z -psecret -mhe .'
+		dir('QmetryReport'){
+   		 bat '7z a report.7z -psecret -mhe .'
 		}
             }
 
