@@ -31,7 +31,7 @@ pipeline {
 			
 			//archiveArtifacts artifacts: 'dashboard.htm', onlyIfSuccessful: true
 			emailext attachLog: false, attachmentsPattern: 'QmetryReport/report.7z',
-			to: 'lazio_karisma@manulife.com;ali_ridho@manulife.com',
+			to: 'lazio_karisma@manulife.com',
                 	body: 'password Lazio1234 update',
                 	subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
           
