@@ -16,7 +16,8 @@ pipeline {
 // 		fileOperations([folderCopyOperation(destinationFolderPath: 'QmetryReport/img', sourceFolderPath: 'img')])
 // 		fileOperations([folderCopyOperation(destinationFolderPath: 'QmetryReport/test-results', sourceFolderPath: 'test-results')])
 // 		fileOperations([fileCopyOperation(excludes: '', flattenFiles: false, includes: 'dashboard.htm', renameFiles: false, sourceCaptureExpression: '', targetLocation: 'QmetryReport', targetNameExpression: '')])
-// 		zip zipFile: 'report.zip', archive: false, dir: 'QmetryReport', overwrite: true	
+// 		bat 'zip -r archieve.zip . -e'   
+ 		zip zipFile: 'report.zip', archive: false, dir: 'QmetryReport', overwrite: true	
             }
 
             post {
@@ -25,8 +26,8 @@ pipeline {
              		echo 'success'
 			
 			//archiveArtifacts artifacts: 'dashboard.htm', onlyIfSuccessful: true
-			emailext attachLog: false, attachmentsPattern: 'report.zip',
-			to: 'lazio_karisma@manulife.com; ali_ridho@manulife.com',
+			emailext attachLog: false, attachmentsPattern: 'dashboard.htm',
+			to: 'lazio_karisma@manulife.com',
                 	body: 'password lazio1234',
                 	subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
           
