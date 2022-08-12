@@ -18,6 +18,7 @@ pipeline {
 // 		fileOperations([fileCopyOperation(excludes: '', flattenFiles: false, includes: 'dashboard.htm', renameFiles: false, sourceCaptureExpression: '', targetLocation: 'QmetryReport', targetNameExpression: '')])
 // 		bat 'zip -r archieve.zip . -e'   
  		zip zipFile: 'report.zip', archive: false, dir: 'QmetryReport', overwrite: true	
+		sha1 'report.zip'
             }
 
             post {
