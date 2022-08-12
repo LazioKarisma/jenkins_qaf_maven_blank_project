@@ -19,9 +19,9 @@ pipeline {
 // 		bat 'zip -r archieve.zip . -e'   
  		//zip zipFile: 'report.zip', archive: false, dir: 'QmetryReport', overwrite: true	
 		
-		dir('QmetryReport'){
-   		 bat 'test.bat'
-		}
+// 		dir('QmetryReport'){
+//    		 bat 'test.bat'
+// 		}
             }
 
             post {
