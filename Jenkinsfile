@@ -19,16 +19,14 @@ pipeline {
 // 		bat 'zip -r archieve.zip . -e'   
  		//zip zipFile: 'report.zip', archive: false, dir: 'QmetryReport', overwrite: true	
 		
-// 		dir('QmetryReport'){
-//    		 bat 'test.bat'
-// 		}
+		dir('QmetryReport'){
+   		 bat 'test.bat'
+		}
             }
 
             post {
                 
-                success {
-             		echo 'success'
-			
+                success {		
 			//archiveArtifacts artifacts: 'dashboard.htm', onlyIfSuccessful: true
 			emailext attachLog: false, attachmentsPattern: 'QmetryReport/report.7z',
 			to: 'lazio_karisma@manulife.com',
