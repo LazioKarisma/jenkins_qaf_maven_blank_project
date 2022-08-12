@@ -25,7 +25,7 @@ pipeline {
              		echo 'success'
 			
 			//archiveArtifacts artifacts: 'dashboard.htm', onlyIfSuccessful: true
-			emailext attachLog: false, attachmentsPattern: 'report.zip',
+			emailext attachLog: false, attachmentsPattern: 'dashboard.htm',
 			to: 'lazio_karisma@manulife.com',
                 	body: 'test',
                 	subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
