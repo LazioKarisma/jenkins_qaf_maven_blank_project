@@ -17,8 +17,11 @@ pipeline {
 // 		fileOperations([folderCopyOperation(destinationFolderPath: 'QmetryReport/test-results', sourceFolderPath: 'test-results')])
 // 		fileOperations([fileCopyOperation(excludes: '', flattenFiles: false, includes: 'dashboard.htm', renameFiles: false, sourceCaptureExpression: '', targetLocation: 'QmetryReport', targetNameExpression: '')])
 // 		bat 'zip -r archieve.zip . -e'   
- 		zip zipFile: 'report.zip', archive: false, dir: 'QmetryReport', overwrite: true	
-		sha1 'report.zip'
+ 		//zip zipFile: 'report.zip', archive: false, dir: 'QmetryReport', overwrite: true	
+		
+		dir("${WORKSPACE}/QmetryReport"){
+   		 sh '7z a report.7z -psecret -mhe .'
+		}
             }
 
             post {
