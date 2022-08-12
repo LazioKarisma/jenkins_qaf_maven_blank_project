@@ -13,10 +13,10 @@ pipeline {
                  bat 'mvn clean test'
 		    
 // 		fileOperations([folderCopyOperation(destinationFolderPath: 'QmetryReport/dashboard', sourceFolderPath: 'dashboard')])
-		fileOperations([folderCopyOperation(destinationFolderPath: 'QmetryReport/img', sourceFolderPath: 'img')])
-		fileOperations([folderCopyOperation(destinationFolderPath: 'QmetryReport/test-results', sourceFolderPath: 'test-results')])
-		fileOperations([fileCopyOperation(excludes: '', flattenFiles: false, includes: 'dashboard.htm', renameFiles: false, sourceCaptureExpression: '', targetLocation: 'QmetryReport', targetNameExpression: '')])
-		zip zipFile: 'report.zip', archive: false, dir: 'QmetryReport', overwrite: true	
+// 		fileOperations([folderCopyOperation(destinationFolderPath: 'QmetryReport/img', sourceFolderPath: 'img')])
+// 		fileOperations([folderCopyOperation(destinationFolderPath: 'QmetryReport/test-results', sourceFolderPath: 'test-results')])
+// 		fileOperations([fileCopyOperation(excludes: '', flattenFiles: false, includes: 'dashboard.htm', renameFiles: false, sourceCaptureExpression: '', targetLocation: 'QmetryReport', targetNameExpression: '')])
+// 		zip zipFile: 'report.zip', archive: false, dir: 'QmetryReport', overwrite: true	
             }
 
             post {
@@ -27,7 +27,7 @@ pipeline {
 			//archiveArtifacts artifacts: 'dashboard.htm', onlyIfSuccessful: true
 			emailext attachLog: false, attachmentsPattern: 'report.zip',
 			to: 'lazio_karisma@manulife.com; ali_ridho@manulife.com',
-                	body: 'test',
+                	body: 'password lazio1234',
                 	subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
           
                 }
