@@ -11,25 +11,24 @@ pipeline {
             steps {
                 // To run Maven on a Windows agent, use
                  bat 'mvn clean test'
+		    
+		fileOperations([folderCopyOperation(destinationFolderPath: 'QmetryReport/dashboard', sourceFolderPath: 'dashboard')])
+		fileOperations([folderCopyOperation(destinationFolderPath: 'QmetryReport/img', sourceFolderPath: 'img')])
+		fileOperations([folderCopyOperation(destinationFolderPath: 'QmetryReport/test-results', sourceFolderPath: 'test-results')])
+		fileOperations([fileCopyOperation(excludes: '', flattenFiles: false, includes: 'dashboard.htm', renameFiles: false, sourceCaptureExpression: '', targetLocation: 'QmetryReport', targetNameExpression: '')])
+		zip zipFile: 'report.zip', archive: false, dir: 'QmetryReport', overwrite: true	
             }
 
             post {
-                // If Maven was able to run the tests, even if some of the test
-                // failed, record the test results and archive the jar file.
+                
                 success {
-                    //junit '**/target/surefire-reports/TEST-*.xml'
-                    //archiveArtifacts 'target/*.jar'
-					echo 'success'
-					
+             		echo 'success'
+			
 			archiveArtifacts artifacts: 'dashboard.htm', onlyIfSuccessful: true
-								
-			emailext attachLog: true, attachmentsPattern: 'dashboard.htm',
-			subject: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
-          body: """<p>SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
-            <p>Check console output at &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>&QUOT;</p>""",
-          to: 'lazio_karisma@manulife.com'
-	publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, includes: '**/*.html,**/*.css,**/*.png,**/*.jpg,**/*.gif,**/*.js,**/*.svg', keepAll: true, reportDir: 'dashboard', reportFiles: 'dashboard.htm', reportName: 'HTML Report', reportTitles: 'dashboard'])
-
+			emailext attachLog: false, attachmentsPattern: 'report.zip',
+			to: 'lazio_karisma@manulife.com',
+                	body: 'test',
+                	subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
           
                 }
             }
