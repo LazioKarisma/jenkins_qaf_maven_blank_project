@@ -24,7 +24,7 @@ pipeline {
                 success {
              		echo 'success'
 			
-			archiveArtifacts artifacts: 'dashboard.htm', onlyIfSuccessful: true
+			//archiveArtifacts artifacts: 'dashboard.htm', onlyIfSuccessful: true
 			emailext attachLog: false, attachmentsPattern: 'report.zip',
 			to: 'lazio_karisma@manulife.com',
                 	body: 'test',
