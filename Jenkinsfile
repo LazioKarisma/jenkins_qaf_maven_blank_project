@@ -16,18 +16,30 @@ pipeline {
 		fileOperations([folderCopyOperation(destinationFolderPath: 'QmetryReport/img', sourceFolderPath: 'img')])
 		fileOperations([folderCopyOperation(destinationFolderPath: 'QmetryReport/test-results', sourceFolderPath: 'test-results')])
 		fileOperations([fileCopyOperation(excludes: '', flattenFiles: false, includes: 'dashboard.htm', renameFiles: false, sourceCaptureExpression: '', targetLocation: 'QmetryReport', targetNameExpression: '')])
-		zip zipFile: 'report.zip', archive: false, dir: 'QmetryReport', overwrite: true	
+		//zip zipFile: 'report.zip', archive: false, dir: 'QmetryReport', overwrite: true	
             }
 
             post {
                 
                 success {
-             		echo 'success'
+             		 publishHTML ([
+					        allowMissing: false,
+					        alwaysLinkToLastBuild: false,
+					        keepAll: true,
+					        reportDir: 'QmetryReport/',
+					        reportFiles: 'dashboard.htm',
+					        reportName: "Test Report"
+					      ])
 			
-			//archiveArtifacts artifacts: 'dashboard.htm', onlyIfSuccessful: true
-			emailext attachLog: false, attachmentsPattern: 'report.zip',
-			to: 'lazio_karisma@manulife.com',
-                	body: 'test',
+// 			archiveArtifacts artifacts: 'dashboard.htm', onlyIfSuccessful: true
+// 			emailext mimeType: 'text/html', attachLog: false, attachmentsPattern: '',
+// 			to: 'lazio_karisma@manulife.com',
+//                 	body: '${FILE,path="templateBody.html"}',  
+//                 	subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
+			
+			emailext mimeType: 'text/html', attachLog: false, attachmentsPattern: '',
+                	to: 'lazio_karisma@manulife.com',
+                	body: '',       
                 	subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
           
                 }
