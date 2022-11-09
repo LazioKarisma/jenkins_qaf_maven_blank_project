@@ -26,7 +26,7 @@ pipeline {
 					        allowMissing: false,
 					        alwaysLinkToLastBuild: false,
 					        keepAll: true,
-					        reportDir: 'QmetryReport/',
+					        reportDir: '',
 					        reportFiles: 'dashboard.htm',
 					        reportName: "Test Report"
 					      ])
@@ -37,9 +37,9 @@ pipeline {
 //                 	body: '${FILE,path="templateBody.html"}',  
 //                 	subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
 			
-			emailext mimeType: 'text/html', attachLog: false, attachmentsPattern: '',
+			emailext mimeType: 'text/html', attachLog: false, attachmentsPattern: 'dashboard.htm',
                 	to: 'lazio_karisma@manulife.com',
-                	body: '',       
+                	body: '${FILE,path="templateBody.html"}',       
                 	subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
           
                 }
